@@ -2,132 +2,184 @@
 
 ### ✨ AI-powered Learning — Where Concepts Meet Visuals
 
-**Multimodal Education Creator** is an AI-powered educational content generator that combines the capabilities of **Large Language Models (LLMs)** and **AI image generation** to create rich, engaging, and visually intuitive learning material — all from a simple topic prompt.
+Multimodal Education Creator is an **AI-powered educational content generator** that combines the power of **Large Language Models (LLMs)** and **AI image generation** to create rich, engaging, and visually intuitive learning material — all from a simple topic prompt.
 
-The system converts complex ideas into structured explanations along with relevant AI-generated visuals, enabling deeper understanding and improved knowledge retention.
-
----
-
-# 🚀 Vision
-
-Education should be **interactive, creative, and accessible** for everyone.
-
-This project transforms abstract concepts into:
-
-* 📘 Clear and structured explanations
-* 🎯 Key learning insights
-* 🖼️ AI-generated visuals
-
-making learning **simpler, faster, and more engaging**.
+Now enhanced with **Docker + CI/CD + Cloud Deployment (AWS EC2)** for real-world scalability 🚀
 
 ---
 
-# 🧠 What It Does
+# 🚀 Live Demo
 
-Given any topic, the system generates:
-
-✨ **Structured Concept Explanation** – Organized and easy-to-understand content
-🎯 **Key Learning Points** – Important highlights for better retention
-🖼️ **AI-Generated Visuals** – Images that enhance conceptual understanding
-
-The result is **true multimodal content**, combining **text + visuals** to improve the learning experience.
+🌐 http://YOUR-EC2-IP:8501
 
 ---
 
-# 🛠️ Core Technology
+# 🧠 Features
 
-| Layer                | Technology                        |
-| -------------------- | --------------------------------- |
-| 🚀 AI Language Model | Gemini 2.5 Flash                  |
-| 🎨 Image Generation  | Stable Diffusion Turbo (SD-Turbo) |
-| 🖥️ User Interface   | Streamlit                         |
-| 🧩 Backend           | Python                            |
-
-📌 **Note:**
-This implementation focuses on high-quality generation with a **simple architecture** and does **not use any vector database**.
+* 📘 **Structured Concept Explanation**
+* 🎯 **Key Learning Points**
+* 🖼️ **AI-Generated Visuals**
+* ⚡ **Real-time Generation**
+* 🌐 **Deployed on Cloud (AWS EC2)**
+* 🔄 **Auto Deployment with CI/CD (GitHub Actions)**
 
 ---
 
-# 📦 Quick Start
+# 🛠️ Tech Stack
 
-### 1️⃣ Clone the Repository
+| Layer               | Technology                             |
+| ------------------- | -------------------------------------- |
+| 🚀 AI Model         | Gemini API                             |
+| 🎨 Image Generation | Hugging Face (FLUX / Stable Diffusion) |
+| 🖥️ Frontend        | Streamlit                              |
+| ⚙️ Backend          | Python                                 |
+| 🐳 Containerization | Docker                                 |
+| ☁️ Cloud            | AWS EC2                                |
+| 🔄 CI/CD            | GitHub Actions                         |
 
-```bash
-git clone https://github.com/bhawsararya/Education.git
-cd Education
+---
+
+# ⚙️ Project Architecture
+
+User Input (Topic)
+↓
+Gemini API (Text Generation)
+↓
+Prompt Processing
+↓
+Hugging Face Image API
+↓
+Streamlit UI (Text + Image Output)
+
+---
+
+# 📦 Local Setup
+
+## 1️⃣ Clone Repo
+
+```
+git clone https://github.com/nameisankit/education-app.git
+cd education-app
 ```
 
-### 2️⃣ Install Dependencies
+## 2️⃣ Install Dependencies
 
-```bash
+```
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Add API Credentials
+## 3️⃣ Add Environment Variables
 
-Create a `.env` file in the root directory and add:
+Create `.env` file:
 
-```env
-GEMINI_API_KEY=your_api_key_here
+```
+GEMINI_API_KEY=your_key
+HF_TOKEN=your_token
 ```
 
-### 4️⃣ Run the Application
+## 4️⃣ Run App
 
-```bash
+```
 streamlit run app.py
 ```
 
 ---
 
-# 💡 How It Works
+# 🐳 Docker Setup
 
-1️⃣ User enters a topic in the Streamlit interface
-2️⃣ The topic is sent to **Gemini 2.5 Flash** for structured educational content generation
-3️⃣ The prompt is optimized for **Stable Diffusion Turbo** to create relevant images
-4️⃣ Text and visuals are displayed together in the Streamlit interface
-
----
-
-# 🎯 Why This Project Matters
-
-🧩 **Better Understanding**
-Combining visuals with explanations improves comprehension and long-term memory.
-
-⚡ **Fast Content Creation**
-Generate complete educational material within seconds.
-
-🛠 **User Friendly**
-Minimal setup with an intuitive interface.
-
-🎨 **Creative Learning Experience**
-AI-generated visuals enhance engagement and clarity.
-
----
-
-# 🏗️ Project Architecture
+## Build Image
 
 ```
-User Input (Topic)
-        ↓
-Gemini 2.5 Flash (Text Generation)
-        ↓
-Prompt Processing
-        ↓
-Stable Diffusion Turbo (Image Generation)
-        ↓
-Streamlit Interface
-(Text + Visual Output)
+docker build -t education-app .
+```
+
+## Run Container
+
+```
+docker run -d -p 8501:8501 \
+-e GEMINI_API_KEY=your_key \
+-e HF_TOKEN=your_token \
+education-app
 ```
 
 ---
 
-# 📈 Use Cases
+# ☁️ Deployment (AWS EC2)
 
-✔ Self-study learning support
-✔ Teacher & tutor material preparation
-✔ E-learning content generation
-✔ Presentation content creation
+* Launch EC2 instance
+* Open ports: 22, 8501
+* Install Docker
+* Run container
+
+```
+docker run -d -p 8501:8501 nameisankit07/education-app
+```
+
+---
+
+# 🔄 CI/CD Pipeline
+
+Automated deployment using **GitHub Actions**:
+
+✔ Build Docker Image
+✔ Push to DockerHub
+✔ Deploy to EC2 via SSH
+✔ Auto restart container
+
+---
+
+# 🔐 Environment Variables
+
+| Variable        | Description            |
+| --------------- | ---------------------- |
+| GEMINI_API_KEY  | Gemini API key         |
+| HF_TOKEN        | Hugging Face token     |
+| DOCKER_USERNAME | DockerHub username     |
+| DOCKER_PASSWORD | DockerHub access token |
+| EC2_HOST        | EC2 public IP          |
+| EC2_KEY         | SSH private key        |
+
+---
+
+# 🎯 Use Cases
+
+✔ Self-study learning
+✔ Teaching material generation
+✔ AI-based education tools
 ✔ Concept visualization
 ✔ Quick topic understanding
+
+---
+
+# 💡 Why This Project
+
+* Combines **text + visuals** → better learning
+* Fully **automated deployment pipeline**
+* Real-world **DevOps implementation**
+* Scalable and production-ready
+
+---
+
+# 🧑‍💻 Author
+
+**Ankit Parmar**
+🚀 DevOps + AI Enthusiast
+
+---
+
+# ⭐ Future Improvements
+
+* Add user authentication
+* Store history (database)
+* Add multiple model support
+* UI enhancements
+
+---
+
+# 🔥 Final Note
+
+This project demonstrates a **complete end-to-end AI + DevOps workflow**:
+
+👉 Idea → Build → Dockerize → Deploy → Automate
 
 ---
