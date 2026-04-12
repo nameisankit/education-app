@@ -10,7 +10,7 @@ Now enhanced with **Docker + CI/CD + Cloud Deployment (AWS EC2)** for real-world
 
 # 🚀 Live Demo
 
-🌐 http://YOUR-EC2-IP:8501
+🌐 http://16.171.58.243:8501
 
 ---
 
