@@ -32,6 +32,5 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
            docker pull ${{ secrets.DOCKER_USERNAME }}/education-app
-           docker ps -q --filter "publish=8501" | xargs -r docker stop
-           docker ps -a -q --filter "publish=8501" | xargs -r docker rm
+           docker rm -f app || true
            docker run -d -p 8501:8501 -e HF_TOKEN=${{ secrets.HF_TOKEN }} -e GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} --restart always --name app ${{ secrets.DOCKER_USERNAME }}/education-app
